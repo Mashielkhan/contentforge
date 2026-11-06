@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "ContentForge",
+    "slug": "contentforge",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "contentforge",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-notifications",
+      "expo-splash-screen",
+      [
+        "expo-share-intent",
+        {
+          "androidIntentFilters": ["text/*"],
+          "iosActivationRules": {
+            "NSExtensionActivationSupportsText": true,
+            "NSExtensionActivationSupportsWebURLWithMaxCount": 1,
+            "NSExtensionActivationSupportsWebPageWithMaxCount": 1
+          },
+          "iosHideView": true
+        }
+      ]
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.contentforge.app"
+    },
+    "android": {
+      "package": "com.contentforge.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B1020"
+      }
+    },
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
