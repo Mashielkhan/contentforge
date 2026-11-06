@@ -76,6 +76,24 @@ content forge/
    npm run typecheck
    ```
 
+7. Start the local ContentForge API in a second PowerShell window:
+
+   ```powershell
+   npm run backend:dev
+   ```
+
+   It exposes `GET /health`, `POST /repurpose`, and `POST /write` on port 3000. Configure `LLM_API_KEY`, `LLM_API_URL`, and `LLM_MODEL` only in server environment variables. With `DEMO_MODE=true`, the app returns deterministic local content so the UI can be tested without an LLM key.
+
+   If port 3000 is already in use, reuse the running backend or start this one on another port. In PowerShell, set `$env:PORT=3001` before running `npm run backend:dev`; update `EXPO_PUBLIC_API_BASE_URL` to use port 3001 as well.
+
+   When using Expo Go on a physical phone, `EXPO_PUBLIC_API_BASE_URL` must use the computer's LAN IP rather than `localhost`. Keep both devices on the same Wi-Fi network. If the IP changes, update `.env.local` and restart Expo with:
+
+   ```powershell
+   npx expo start --clear
+   ```
+
+   Remote push notifications are not available in Expo Go on Android SDK 53+; use an EAS development build for that feature.
+
 ## Next implementation milestones
 
 - Add onboarding, auth, settings, and paywall routes.

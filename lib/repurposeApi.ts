@@ -47,6 +47,7 @@ export async function generateRepurpose(input: { url: string; tone: string; sign
     return parsed.data;
   } catch (error) {
     if (error instanceof Error && error.name === 'AbortError') throw new Error('Generation timed out. Check your connection and try again.');
+    if (error instanceof TypeError && /fetch/i.test(error.message)) throw new Error('ContentForge API is not reachable. Start the backend and use your computer’s LAN IP in EXPO_PUBLIC_API_BASE_URL.');
     throw error;
   } finally {
     clearTimeout(timeout);
