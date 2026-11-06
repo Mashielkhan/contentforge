@@ -9,6 +9,7 @@ web-build/
 *.key
 *.mobileprovision
 .env
+.env.local
 backend/.env
 android/.gradle/
 android/local.properties
