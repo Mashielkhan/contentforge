@@ -3,7 +3,6 @@ export type ExpoPushMessage = {
   title: string;
   body: string;
   data?: Record<string, unknown>;
-  channelId?: string;
 };
 
 const EXPO_PUSH_URL = 'https://exp.host/--/api/v2/push/send';
@@ -25,6 +24,5 @@ export async function notifyTranscriptionComplete(tokens: string[], meetingId: s
     title: 'Meeting summary ready',
     body: 'Your transcription, decisions, and action items are ready to review.',
     data: { url: `/(tabs)/meetings?meetingId=${encodeURIComponent(meetingId)}`, kind: 'transcription-complete', meetingId },
-    channelId: 'transcription-complete',
   })));
 }

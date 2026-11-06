@@ -5,14 +5,12 @@ import * as Notifications from 'expo-notifications';
 import { ShareIntentProvider } from 'expo-share-intent';
 import { ShareIntentBridge } from '@/components/ShareIntentBridge';
 import { OfflineBanner } from '@/components/OfflineBanner';
-import { configureNotifications } from '@/lib/notifications';
 
 function NotificationObserver() {
   const lastResponse = Notifications.useLastNotificationResponse();
   const handledInitialResponse = useRef(false);
 
   useEffect(() => {
-    void configureNotifications();
     const redirect = (notification: Notifications.Notification) => {
       const url = notification.request.content.data?.url;
       if (typeof url === 'string') router.push(url as never);

@@ -4,8 +4,6 @@ import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { supabase } from './supabase';
 
-export const TRANSCRIPTION_CHANNEL_ID = 'transcription-complete';
-export const DAILY_REMINDER_CHANNEL_ID = 'daily-reminder';
 const REMINDER_ID_KEY = '@contentforge/notifications/daily-reminder-id';
 
 Notifications.setNotificationHandler({
@@ -18,25 +16,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-async function configureChannels() {
-  if (Platform.OS !== 'android') return;
-  await Notifications.setNotificationChannelAsync(TRANSCRIPTION_CHANNEL_ID, {
-    name: 'Generation complete',
-    importance: Notifications.AndroidImportance.DEFAULT,
-    vibrationPattern: [0, 250, 200, 250],
-  });
-  await Notifications.setNotificationChannelAsync(DAILY_REMINDER_CHANNEL_ID, {
-    name: 'Daily reminder',
-    importance: Notifications.AndroidImportance.DEFAULT,
-  });
-}
-
-export async function configureNotifications() {
-  await configureChannels();
-}
-
 export async function registerForPushNotifications() {
-  await configureChannels();
   const existing = await Notifications.getPermissionsAsync();
   let status = existing.status;
   if (status !== 'granted') {
@@ -76,7 +56,6 @@ export async function scheduleDailyReminder(hour: number, minute: number) {
       title: 'A fresh idea is waiting',
       body: 'Open ContentForge and turn today’s thought into content.',
       data: { url: '/(tabs)/write', kind: 'daily-reminder' },
-      ...(Platform.OS === 'android' ? { channelId: DAILY_REMINDER_CHANNEL_ID } : {}),
     },
     trigger: { type: Notifications.SchedulableTriggerInputTypes.DAILY, hour, minute },
   });
