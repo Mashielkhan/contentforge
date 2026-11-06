@@ -11,6 +11,8 @@ const REMINDER_ID_KEY = '@contentforge/notifications/daily-reminder-id';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
+    shouldShowBanner: true,
+    shouldShowList: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
   }),

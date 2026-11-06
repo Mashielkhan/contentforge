@@ -6,7 +6,6 @@
     "orientation": "portrait",
     "scheme": "contentforge",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "plugins": [
       "expo-router",
       "expo-secure-store",
